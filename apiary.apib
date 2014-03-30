@@ -77,13 +77,13 @@ A single managed capacity instance object with all its details
 ### Remove an Instance [DELETE]
 + Response 204
 
-# Group Types
+# Group Cap-Types
 Types of capacity management instances, such as array, esx cluster, host or volume. 
 
-## Types Collection [/types]
+## Cap-Types Collection [/cap-types]
 ### List all Types [GET]
 
-Attributes of an Type are
+Attributes of a Cap-Type are
 
 - id - String the unique identifier for an type. 
 - name - String the name of the type
@@ -105,7 +105,7 @@ Attributes of an Type are
           "description": "A container for bandwidth capacity, such as a port on a switch, or an entier switch backplane."
         }]
 
-### Create an Type [POST]
+### Create a Cap-Type [POST]
 + Request (application/json)
 
         { "name": "netapp-volume", 
@@ -118,7 +118,7 @@ Attributes of an Type are
           "description": "A volume on a NetApp array." }
           
          
-## Type [/types/{id}]
+## Type [/cap-types/{id}]
 A single type of capacity instance with all its details
 
 + Parameters
