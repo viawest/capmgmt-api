@@ -1,0 +1,387 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Capacity Management API
+Capacity Management API is a *capacity metrics api* designed to manage and report capacity forcasts and actual metrics.
+
+# Group Instances
+Instances of items with capacity resources of the **Capacity Management API**
+
+## Instances Collection [/instances]
+### List all Instances [GET]
+
+Attributes of an Instance are
+
+- id - the unique identifier for an instance. 
+- cid - the owner of the instance
+- description - a text description of the instance
+- parent - (optional) href of the parent instance of an instance, such as the array a volume is contained on. 
+- type - an href to the type of the instance
+
++ Response 200 (application/json)
+
+        [{
+          "id": "53375e765ff91ac25e000001", 
+          "cid": "81377", "name": "81377-ntapp01", 
+          "description": "81377 production NetApp for 81377 UCS, 81377 HP clusters and 81377 multi-tenant storage.",
+          "type": {"href": "/types/53375fe4fabb0f335f000001"} 
+        }, {
+          "id": "53375e73f37cb9be5e000001", 
+          "cid": "87148", "name": "87148-authvcenter", 
+          "description": "87148 ESX cluster for A2.",
+          "type":{"href": "/types/53376085c619ba595f000001"} 
+        }, {
+          "id": "533769d98279560162000001", 
+          "cid": "87148", "name": "47845-vol01", 
+          "description": "Customer 47845 volume.",
+          "parent": {"href": "/instances/53375e765ff91ac25e000001"},
+          "type":{"href": "/types/53376a150ed1600f62000001"} 
+        }]
+
+### Create an Instance [POST]
++ Request (application/json)
+
+        { "cid": "81377", "name": "81377-sw01-bw-p15", 
+          "description": "Bandwidth on port 15 of switch 81377-sw01.",
+          "type": {"href": "/types/5337682d2acb107e61000001" }
+
++ Response 201 (application/json)
+
+        { "id" : "533767ed5ad40a6d61000001",
+          "cid": "81377", "name": "81377-sw01-bw-p15", 
+          "description": "Bandwidth on port 15 of switch 81377-sw01.",
+          "type": {"href": "/types/5337682d2acb107e61000001" }
+
+## Instance [/instances/{id}]
+A single managed capacity instance object with all its details
+
++ Parameters
+    + id (required, string, `53375e765ff91ac25e000001`) ... String `id` of the Instance to perform action with. Has example value.
+
+### Retrieve an Instance [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id": "53375e765ff91ac25e000001", 
+                "cid": "81377", "name": "81377-ntapp01", 
+                "description": "81377 production NetApp for 81377 UCS, 81377 HP clusters and 81377 multi-tenant storage.",
+                "type": {"href": "/types/53375fe4fabb0f335f000001"} 
+            }
+
+### Remove an Instance [DELETE]
++ Response 204
+
+# Group Types
+Types of capacity management instances, such as array, esx cluster, host or volume. 
+
+## Types Collection [/types]
+### List all Types [GET]
+
+Attributes of an Type are
+
+- id - the unique identifier for an type. 
+- name - the name of the type
+- description - a text description of the type
+
++ Response 200 (application/json)
+
+        [{
+          "id": "53375fe4fabb0f335f000001", 
+          "name": "netapp-array", 
+          "description": "A NetApp array."
+        }, {
+          "id": "53375e73f37cb9be5e000001", 
+          "name": "esx-cluster", 
+          "description": "A cluster of ESX servers. The cluster should be contained by a vCenter Instance and should have a vCenter Instance for a parent."
+        }, {
+          "id": "5337682d2acb107e61000001", 
+          "name": "bandwidth", 
+          "description": "A container for bandwidth capacity, such as a port on a switch, or an entier switch backplane."
+        }]
+
+### Create an Type [POST]
++ Request (application/json)
+
+        { "name": "netapp-volume", 
+          "description": "A volume on a NetApp array." }
+
++ Response 201 (application/json)
+
+        { "id" : "53376a150ed1600f62000001",
+          "name": "netapp-volume", 
+          "description": "A volume on a NetApp array." }
+          
+         
+## Type [/types/{id}]
+A single type of capacity instance with all its details
+
++ Parameters
+    + id (required, string, `53376a150ed1600f62000001`) ... String `id` of the Type to perform action with. Has example value.
+
+### Retrieve a Type [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id" : "53376a150ed1600f62000001",
+                "name": "netapp-volume", 
+                "description": "A volume on a NetApp array."  
+            }
+
+### Remove a Type [DELETE]
++ Response 204
+
+# Group UOM
+Units of Measure of capacity such as gigabytes, gigabits/second, GHZ or GHZ hours. 
+
+## UOM Collection [/uom]
+### List all UOM [GET]
+
+Attributes of a UOM are
+
+- id - the unique identifier for a UOM. 
+- name - the name of the UOM, such as "gigabytes', 'gigabits per second'
+- abbr - abbreviation for the UOM, such as 'GB', 'Gbps', 
+- description - a text description of the UOM
+- span - 0 == instantaneous measure, 1 == measure covering a span of time (e.g. average)  
+
++ Response 200 (application/json)
+
+        [{
+          "id": "53377623c1699eb065000001", 
+          "name": "gigabytes", 
+          "abbr": "GB",
+          "description": "Decimal gigabytes (10^9) bytes.",
+          "span": 0
+        }, {
+          "id": "533776243a313fb165000001", 
+          "name": "gigabits per second", 
+          "abbr": "Gbps",
+          "description": "Decimal gigabits (10^9) bit per second.",
+          "span": 1
+        }]
+
+### Create an UOM [POST]
++ Request (application/json)
+
+        { "name": "gigahertz hours", 
+          "abbr": "GHZ hrs",
+          "description": "Decimal gigahertz of CPU cycles (10^9) over a number of hours.",
+          "span": 1 }
+
++ Response 201 (application/json)
+
+        { "id" : "533777afef6c7a2f66000001",
+          "name": "gigahertz hours", 
+          "abbr": "GHZ hrs",
+          "description": "Decimal gigahertz of CPU cycles (10^9) over a number of hours.",
+          "span": 1 }
+          
+         
+## UOM [/uom/{id}]
+A single UOM instance with all its details
+
++ Parameters
+    + id (required, string, `533777afef6c7a2f66000001`) ... String `id` of the UOM to perform action with. Has example value.
+
+### Retrieve a UOM [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id" : "533777afef6c7a2f66000001",
+                "name": "gigahertz hours", 
+                "abbr": "GHZ hrs",
+                "description": "Decimal gigahertz of CPU cycles (10^9) over a number of hours.",
+                "span": 1
+            }
+
+### Remove a UOM [DELETE]
++ Response 204
+
+# Group Series
+A collection of observations such as Actual, Budget or Forecast. A series may have a version. The version is 
+monotonically increasing, so that the latest version may be calculated. 
+
+## Series Collection [/series]
+### List all Series [GET]
+
+Attributes of a Series are
+
+- id - the unique identifier for a Series. 
+- name - the name of the Series, such as "Actual', 'Budget', 'Forecast (Linear Regression)'
+- version - an integer id for the version. A new version is created (increments) when an existing version is re-posted.
+- date - the date the version was created. 
+- description - a description of this Series and version, such as 'Forecast as of 12/21/2014'
+
++ Response 200 (application/json)
+
+        [{
+          "id": "53377d343473a8ea67000001", 
+          "name": "Actual", 
+          "version": 1231,
+          "date": "1396145706885",
+          "description": "Actuals posted Sun, 30 Mar 2014 02:15:06 GMT"
+        }, {
+          "id": "53377d402b1c0af367000001", 
+          "name": "Finance Budget", 
+          "version": 12
+          "date": "1388534400",
+          "description": "Finance budget posted Wed, 01 Jan 2014 00:00:00 GMT"
+        }]
+
+### Create an Series [POST]
++ Request (application/json)
+
+        { 
+          "name": "Finance Budget", 
+          "date": "1388534400",
+          "description": "Finance budget posted Wed, 01 Jan 2014 00:00:00 GMT"
+        }
+
++ Response 201 (application/json)
+
+        {
+          "id": "53377d402b1c0af367000001", 
+          "name": "Finance Budget", 
+          "version": 12
+          "date": "1388534400",
+          "description": "Finance budget posted Wed, 01 Jan 2014 00:00:00 GMT"
+        }          
+         
+## Series [/series/{id}]
+A single Series instance with all its details
+
++ Parameters
+    + id (required, string, `53377d402b1c0af367000001`) ... String `id` of the Series to perform action with. Has example value.
+
+### Retrieve a Series [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id": "53377d402b1c0af367000001", 
+                "name": "Finance Budget", 
+                "version": 12
+                "date": "1388534400",
+                "description": "Finance budget posted Wed, 01 Jan 2014 00:00:00 GMT"    
+            }
+
+### Remove a Series [DELETE]
++ Response 204
+
+# Group Observations
+
+## Observations Collection [/observations]
+### List all Observations [GET]
+
+Attributes of an Observation are
+
+- id - the unique identifier for a Observation. 
+- instance - href to the instance for this observation
+- series - href to the series for the observation.
+- date - the date of the observation. 
+- duration - the timespan for the observation. Should be zero for an instantaneous observation.  
+- value - a Number for the observation.
+- UOM - href to the UOM for the Observation.
+
++ Response 200 (application/json)
+
+        [{
+            "id": "53378402798071fd69000001", 
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 20114.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        },{
+            "id": "5337855dc166e2716a000001",
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 25733.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        }]
+        
+### Create Observations [POST]
++ Request (application/json)
+
+        [{
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 20114.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        },{
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 25733.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        }]
+
++ Response 201 (application/json)
+
+        [{
+            "id": "53378402798071fd69000001", 
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 20114.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        },{
+            "id": "5337855dc166e2716a000001",
+            "instance": "533769d98279560162000001",
+            "series": {"href": "/series/53377d343473a8ea67000001"}, 
+            "duration": "0",
+            "value": 25733.13,
+            "uom": {"href": "/uom/53377623c1699eb065000001"}
+        }]        
+         
+## Observations [/observations/{id}]
+A single Observation instance with all its details
+
++ Parameters
+    + id (required, string, `5337855dc166e2716a000001`) ... String `id` of the Observation to perform action with. Has example value.
+
+### Retrieve a Observation [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            {
+                "id": "5337855dc166e2716a000001",
+                "instance": "533769d98279560162000001",
+                "series": {"href": "/series/53377d343473a8ea67000001"}, 
+                "duration": "0",
+                "value": 257313.13,
+                "uom": {"href": "/uom/53377623c1699eb065000001"}
+            }
+
+### Remove a Observation [DELETE]
++ Response 204
