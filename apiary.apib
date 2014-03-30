@@ -12,11 +12,11 @@ Instances of items with capacity resources of the **Capacity Management API**
 
 Attributes of an Instance are
 
-- id - the unique identifier for an instance. 
-- cid - the owner of the instance
-- description - a text description of the instance
-- parent - (optional) href of the parent instance of an instance, such as the array a volume is contained on. 
-- type - an href to the type of the instance
+- id - String the unique identifier for an instance. 
+- cid - String the owner of the instance
+- description - String a text description of the instance
+- parent - Object (optional) href of the parent instance of an instance, such as the array a volume is contained on. 
+- type - Object an href to the type of the instance
 
 + Response 200 (application/json)
 
@@ -85,9 +85,9 @@ Types of capacity management instances, such as array, esx cluster, host or volu
 
 Attributes of an Type are
 
-- id - the unique identifier for an type. 
-- name - the name of the type
-- description - a text description of the type
+- id - String the unique identifier for an type. 
+- name - String the name of the type
+- description - String a text description of the type
 
 + Response 200 (application/json)
 
@@ -154,7 +154,7 @@ Attributes of a UOM are
 - name - the name of the UOM, such as "gigabytes', 'gigabits per second'
 - abbr - abbreviation for the UOM, such as 'GB', 'Gbps', 
 - description - a text description of the UOM
-- span - 0 == instantaneous measure, 1 == measure covering a span of time (e.g. average)  
+- span - Boolean false for instantaneous measure, true for measure covering a span of time (e.g. average)  
 
 + Response 200 (application/json)
 
