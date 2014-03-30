@@ -24,18 +24,18 @@ Attributes of an Instance are
           "id": "53375e765ff91ac25e000001", 
           "cid": "81377", "name": "81377-ntapp01", 
           "description": "81377 production NetApp for 81377 UCS, 81377 HP clusters and 81377 multi-tenant storage.",
-          "type": {"href": "/types/53375fe4fabb0f335f000001"} 
+          "cap-type": {"href": "/types/53375fe4fabb0f335f000001"} 
         }, {
           "id": "53375e73f37cb9be5e000001", 
           "cid": "87148", "name": "87148-authvcenter", 
           "description": "87148 ESX cluster for A2.",
-          "type":{"href": "/types/53376085c619ba595f000001"} 
+          "cap-type":{"href": "/types/53376085c619ba595f000001"} 
         }, {
           "id": "533769d98279560162000001", 
           "cid": "87148", "name": "47845-vol01", 
           "description": "Customer 47845 volume.",
           "parent": {"href": "/instances/53375e765ff91ac25e000001"},
-          "type":{"href": "/types/53376a150ed1600f62000001"} 
+          "cap-type":{"href": "/types/53376a150ed1600f62000001"} 
         }]
 
 ### Create an Instance [POST]
@@ -43,14 +43,14 @@ Attributes of an Instance are
 
         { "cid": "81377", "name": "81377-sw01-bw-p15", 
           "description": "Bandwidth on port 15 of switch 81377-sw01.",
-          "type": {"href": "/types/5337682d2acb107e61000001" }
+          "cap-type": {"href": "/types/5337682d2acb107e61000001" }
 
 + Response 201 (application/json)
 
         { "id" : "533767ed5ad40a6d61000001",
           "cid": "81377", "name": "81377-sw01-bw-p15", 
           "description": "Bandwidth on port 15 of switch 81377-sw01.",
-          "type": {"href": "/types/5337682d2acb107e61000001" }
+          "cap-type": {"href": "/types/5337682d2acb107e61000001" }
 
 ## Instance [/instances/{id}]
 A single managed capacity instance object with all its details
