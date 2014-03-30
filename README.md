@@ -1,6 +1,3 @@
-capmgmt-api
-===========
-
 # Capacity Management API
 
 The **Capacity Management API** defines a web services API for managing arbitrary capacity information. 
