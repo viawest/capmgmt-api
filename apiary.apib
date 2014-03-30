@@ -24,18 +24,18 @@ Attributes of an Instance are
           "id": "53375e765ff91ac25e000001", 
           "cid": "81377", "name": "81377-ntapp01", 
           "description": "81377 production NetApp for 81377 UCS, 81377 HP clusters and 81377 multi-tenant storage.",
-          "cap-type": {"href": "/types/53375fe4fabb0f335f000001"} 
+          "captype": {"href": "/types/53375fe4fabb0f335f000001"} 
         }, {
           "id": "53375e73f37cb9be5e000001", 
           "cid": "87148", "name": "87148-authvcenter", 
           "description": "87148 ESX cluster for A2.",
-          "cap-type":{"href": "/types/53376085c619ba595f000001"} 
+          "captype":{"href": "/types/53376085c619ba595f000001"} 
         }, {
           "id": "533769d98279560162000001", 
           "cid": "87148", "name": "47845-vol01", 
           "description": "Customer 47845 volume.",
           "parent": {"href": "/instances/53375e765ff91ac25e000001"},
-          "cap-type":{"href": "/types/53376a150ed1600f62000001"} 
+          "captype":{"href": "/types/53376a150ed1600f62000001"} 
         }]
 
 ### Create an Instance [POST]
@@ -43,14 +43,14 @@ Attributes of an Instance are
 
         { "cid": "81377", "name": "81377-sw01-bw-p15", 
           "description": "Bandwidth on port 15 of switch 81377-sw01.",
-          "cap-type": {"href": "/types/5337682d2acb107e61000001" }
+          "captype": {"href": "/types/5337682d2acb107e61000001" }
 
 + Response 201 (application/json)
 
         { "id" : "533767ed5ad40a6d61000001",
           "cid": "81377", "name": "81377-sw01-bw-p15", 
           "description": "Bandwidth on port 15 of switch 81377-sw01.",
-          "cap-type": {"href": "/types/5337682d2acb107e61000001" }
+          "captype": {"href": "/types/5337682d2acb107e61000001" }
 
 ## Instance [/instances/{id}]
 A single managed capacity instance object with all its details
@@ -77,13 +77,13 @@ A single managed capacity instance object with all its details
 ### Remove an Instance [DELETE]
 + Response 204
 
-# Group Cap-Types
+# Group Captypes
 Types of capacity management instances, such as array, esx cluster, host or volume. 
 
-## Cap-Types Collection [/cap-types]
+## Captypes Collection [/captypes]
 ### List all Types [GET]
 
-Attributes of a Cap-Type are
+Attributes of a captype are
 
 - id - String the unique identifier for an type. 
 - name - String the name of the type
@@ -105,7 +105,7 @@ Attributes of a Cap-Type are
           "description": "A container for bandwidth capacity, such as a port on a switch, or an entier switch backplane."
         }]
 
-### Create a Cap-Type [POST]
+### Create a Captype [POST]
 + Request (application/json)
 
         { "name": "netapp-volume", 
@@ -118,13 +118,13 @@ Attributes of a Cap-Type are
           "description": "A volume on a NetApp array." }
           
          
-## Type [/cap-types/{id}]
+## Type [/captypes/{id}]
 A single type of capacity instance with all its details
 
 + Parameters
     + id (required, string, `53376a150ed1600f62000001`) ... String `id` of the Type to perform action with. Has example value.
 
-### Retrieve a Type [GET]
+### Retrieve a Captype [GET]
 + Response 200 (application/json)
 
     + Header
@@ -139,7 +139,7 @@ A single type of capacity instance with all its details
                 "description": "A volume on a NetApp array."  
             }
 
-### Remove a Type [DELETE]
+### Remove a Captype [DELETE]
 + Response 204
 
 # Group UOM
