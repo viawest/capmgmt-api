@@ -310,14 +310,14 @@ Attributes of an Observation are
 
         [{
             "id": "53378402798071fd69000001", 
-            "instance": "533769d98279560162000001",
+            "instance": {"href": "/instances/533769d98279560162000001"},
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 20114.13,
             "uom": {"href": "/uom/53377623c1699eb065000001"}
         },{
-            "id": "5337855dc166e2716a000001",
-            "instance": "533769d98279560162000001",
+            "id": {"href": "5337855dc166e2716a000001"},
+            "instance": "/instances/533769d98279560162000001",
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 25733.13,
@@ -328,13 +328,13 @@ Attributes of an Observation are
 + Request (application/json)
 
         [{
-            "instance": "533769d98279560162000001",
+            "instance": {"href": "/instances/533769d98279560162000001"},
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 20114.13,
             "uom": {"href": "/uom/53377623c1699eb065000001"}
         },{
-            "instance": "533769d98279560162000001",
+            "instance": {"href": "/instances/533769d98279560162000001"},
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 25733.13,
@@ -345,14 +345,14 @@ Attributes of an Observation are
 
         [{
             "id": "53378402798071fd69000001", 
-            "instance": "533769d98279560162000001",
+            "instance": {"href": "533769d98279560162000001"},
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 20114.13,
             "uom": {"href": "/uom/53377623c1699eb065000001"}
         },{
             "id": "5337855dc166e2716a000001",
-            "instance": "533769d98279560162000001",
+            "instance": {"href": "/instances/533769d98279560162000001"},
             "series": {"href": "/series/53377d343473a8ea67000001"}, 
             "duration": "0",
             "value": 25733.13,
@@ -376,7 +376,7 @@ A single Observation instance with all its details
 
             {
                 "id": "5337855dc166e2716a000001",
-                "instance": "533769d98279560162000001",
+                "instance": {"href": "/instances/533769d98279560162000001"},
                 "series": {"href": "/series/53377d343473a8ea67000001"}, 
                 "duration": "0",
                 "value": 257313.13,
