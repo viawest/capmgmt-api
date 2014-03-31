@@ -1,4 +1,4 @@
-# Capacity Management API
+# Capacity Management API v0.1
 
 The **Capacity Management API** defines a web services API for managing arbitrary capacity information. 
 
